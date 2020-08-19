@@ -63,14 +63,18 @@ try{
         }
     
     });
+
+    app.get('/', function (req, res) {
+        res.send('Convert Word to PDF');
+    });
     
-    http.createServer(app).listen(8001, () => {
-        console.log('Server started at http://localhost:8001');
+    http.createServer(app).listen(8001, '192.168.253.104', () => {
+        console.log('Server started at http://192.168.253.104:8001');
     });
     
 
 }catch(error){
 
-    console.log('Server Faild at http://localhost:8001');
+    console.log('Server Faild at http://192.168.253.104:8001');
 
 }
