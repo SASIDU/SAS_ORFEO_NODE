@@ -8,6 +8,8 @@ var opn = require('opn');
 const toPdf = require('mso-pdf')
 
 try{
+	
+  app.use(express.static('public'));
 
   app.get('/file_download', function(req, res) {
 
@@ -25,7 +27,7 @@ try{
           response.pipe(file);
 
           const enterPath = path.join(__dirname, `/tmp.docx`);
-          const outputPath = path.join(__dirname, `/pdf-files/`+name_file+`.pdf`);
+          const outputPath = path.join(__dirname, `/public/`+name_file+`.pdf`);
 
           toPdf.convert(enterPath,outputPath,function(errors){
 
@@ -34,11 +36,21 @@ try{
               res.end(JSON.stringify({ info: 'faild' }, null, 3));
             }
 
-            var file_return = __dirname+`/pdf-files/`+name_file+`.pdf`;
-            var bitmap = fs.readFileSync(file_return);
-            var file_base_64 = new Buffer(bitmap).toString('base64');
+            var file_return = __dirname+`/public/`+name_file+`.pdf`;
+			var url_open = 'http://apps.grupotci.com.co:8001/'+ name_file +'.pdf';
+			//app.use(express.static(path.join(__dirname, 'public')));
+			
+            /*var bitmap = fs.readFileSync(file_return);
+            var file_base_64 = new Buffer(bitmap).toString('base64');*/
 
-            opn(file_return, {app: 'chrome'});
+            //opn(url_open, {app: 'chrome'});
+			
+			/*res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({ info: 'Open URL' }, null, 3));*/
+			
+			var data =fs.readFileSync(file_return);
+			res.contentType("application/pdf");
+			res.send(data);
 
             /*res.download(file_return, req.params.url_file, function(err){
 
@@ -53,23 +65,6 @@ try{
           });
 
         }
-<<<<<<< HEAD
-    
-    });
-
-    app.get('/', function (req, res) {
-        res.send('Convert Word to PDF');
-    });
-    
-    http.createServer(app).listen(8001, '192.168.253.104', () => {
-        console.log('Server started at http://192.168.253.104:8001');
-    });
-    
-
-}catch(error){
-
-    console.log('Server Faild at http://192.168.253.104:8001');
-=======
         // Add timeout.
         request.setTimeout(12000, function () {
             request.abort();
@@ -85,7 +80,7 @@ try{
 
   });
 
-  http.createServer(app).listen(8001, () => {
+  http.createServer(app).listen(8001, '192.168.253.104', () => {
       console.log('Server started at http://localhost:8001');
   });
 
@@ -93,6 +88,5 @@ try{
 }catch(error){
 
   console.log('Server Faild at http://localhost:8001');
->>>>>>> 7618bfb9bfc52ca178cec64a18a66b08c1e9e301
 
 }

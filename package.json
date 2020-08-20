@@ -1,7 +1,6 @@
 {
   "name": "node-1",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,7 +14,7 @@
     "docx-pdf": "0.0.1",
     "express": "^4.17.1",
     "http": "0.0.1-security",
-    "libreoffice-convert": "^1.0.5",
+    "libreoffice-convert": "^1.1.1",
     "mso-pdf": "^1.0.2",
     "office-to-pdf": "^4.0.0",
     "open-file-explorer": "^1.0.2",
@@ -23,5 +22,15 @@
     "request": "^2.88.2",
     "unoconv": "^0.1.2",
     "word2pdf": "0.0.1-security"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SASIDU/SAS_ORFEO_NODE.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SASIDU/SAS_ORFEO_NODE/issues"
+  },
+  "homepage": "https://github.com/SASIDU/SAS_ORFEO_NODE#readme",
+  "description": ""
 }
