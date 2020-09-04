@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "http": "0.0.1-security",
     "libreoffice-convert": "^1.1.1",
     "mso-pdf": "^1.0.2",
+    "nodemon": "^2.0.4",
     "office-to-pdf": "^4.0.0",
     "open-file-explorer": "^1.0.2",
     "opn": "^6.0.0",
