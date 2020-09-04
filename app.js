@@ -19,7 +19,8 @@ try{
     let save = req.query.save;
 
     if(url_file != '' && name_file != '' && extencion_file == '.docx' || extencion_file == 'docx'){
-
+		
+	
       var request = http.get(url_file, function(response) {
         if (response.statusCode === 200) {
 
@@ -28,7 +29,7 @@ try{
 
           const enterPath = path.join(__dirname, `/tmp.docx`);
           const outputPath = path.join(__dirname, `/public/`+name_file+`.pdf`);
-
+		  
           toPdf.convert(enterPath,outputPath,function(errors){
 
             if(errors){
@@ -38,15 +39,8 @@ try{
 
             var file_return = __dirname+`/public/`+name_file+`.pdf`;
 			var url_open = 'http://apps.grupotci.com.co:8001/'+ name_file +'.pdf';
-			//app.use(express.static(path.join(__dirname, 'public')));
 			
-            /*var bitmap = fs.readFileSync(file_return);
-            var file_base_64 = new Buffer(bitmap).toString('base64');*/
-
-            //opn(url_open, {app: 'chrome'});
 			
-			/*res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({ info: 'Open URL' }, null, 3));*/
 			
 			var data =fs.readFileSync(file_return);
 			res.contentType("application/pdf");
@@ -63,7 +57,7 @@ try{
             });*/
 
           });
-
+		  
         }
         // Add timeout.
         request.setTimeout(12000, function () {
