@@ -56,7 +56,7 @@ try {
 
         }else{
           file.close();
-          fs.unlink(dest, () => {}); 
+          //fs.unlink('./tmp.docx', () => {}); 
           res.end(JSON.stringify({ info: 'File no found' }, null, 3));
         }
         // Add timeout.
@@ -65,8 +65,9 @@ try {
         });
 
       }).on('error', function(err) { // Handle errors
-        fs.unlink(dest); // Delete the file async. (But we don't check the result)
-        res.end(JSON.stringify({ info: 'faild' }, null, 3));
+		file.close();
+        //fs.unlink('tmp.docx'); // Delete the file async. (But we don't check the result)
+        res.end(JSON.stringify({ info: 'Archivo no encontrando' }, null, 3));
       });
 
     } else {
@@ -77,8 +78,8 @@ try {
 
   });
 
-  http.createServer(app).listen(8001, () => {
-    console.log('Server started at http://localhost:8001');
+  http.createServer(app).listen(8001, '192.168.253.104', () => {
+    console.log('Server started at http://apps.grupotci.com.co:8001');
   });
 
 
