@@ -125,7 +125,7 @@ try {
 
   });
 
-  http.createServer(app).listen(8001, () => {
+  http.createServer(app).listen(8001, '192.168.253.104', () => {
     console.log('Server started at http://apps.grupotci.com.co:8001');
   });
 
