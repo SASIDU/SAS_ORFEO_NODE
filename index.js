@@ -6,13 +6,6 @@ var fs = require('fs');
 const path = require('path');
 const toPdf = require('mso-pdf');
 
-
-/*
-const doc = require('docx-pdf');
-const CloudmersiveConvertApiClient = require('cloudmersive-convert-api-client');const libre = require('libreoffice-convert');
-const { promisify } = require('bluebird');
-let lib_convert = promisify(libre.convert)*/
-
 try {
 
   app.use(express.static('public'));
