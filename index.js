@@ -12,30 +12,36 @@ try {
 
   app.get('/convert', function(req , res){
 
-    let url_file = req.query.url_file;
-    let name_file = req.query.name_file;
-
+    let tmp_url = req.query.url_file;
+    let tmp_name = req.query.name_file;
+	
+	let url_file = tmp_url.replace(/\\/g, '');
+	let name_file = tmp_name.replace(/\\/g, '');
+	
+	var str = url_file.replace(/\\/g, '');
+	
     if(url_file != '' && url_file != null && name_file != '' && name_file != null){
 
       var file = fs.createWriteStream( name_file + ".docx");
-
+	  
       var request = http.get(url_file, function (response) {
+		
         if (response.statusCode === 200) {
-  
+						
           response.pipe(file);
   
           const enterPath = path.join(__dirname, `/` + name_file +  `.docx`);
           const outputPath = path.join(__dirname, `/public/` + name_file + `.pdf`);
-  
+			
           toPdf.convert(enterPath, outputPath, function (errors) {
   
             if (errors) {
               res.end(JSON.stringify({ info: 'faild' }, null, 3));
             }
-  
+			
             file.close();
-            fs.unlinkSync(enterPath);
-
+            //fs.unlinkSync(enterPath);
+			
             res.end('true');
   
           });
